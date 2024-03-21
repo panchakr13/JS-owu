@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>sessions</title>
+</head>
+<body>
+
+<div id="sessionsL"></div>
+
+<script>
+
+let sessions = localStorage.getItem('sessions');
+
+let sessionsL = document.getElementById('sessionsL');
+
+if (sessions){
+    let arrSessions = sessions.split(';');
+
+    arrSessions.forEach(function (session, index){
+        let sessionDiv = document.createElement('div');
+        sessionDiv.innerText = `Session # ${index + 1}: ${session}`;
+        sessionsL.appendChild(sessionDiv);
+    })
+} else {
+    let noSessions = document.createElement('h3');
+    noSessions.innerText = 'No sessions';
+    sessionsL.appendChild(noSessions);
+}
+
+</script>
+</body>
+</html>

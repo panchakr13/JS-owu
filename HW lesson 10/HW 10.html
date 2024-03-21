@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #box{
+            height: 100px;
+            width: 600px;
+            background: silver;
+            display: flex;
+            align-items: center;
+        }
+
+        #prevButt{
+            height: 100px;
+            width: 300px;
+        }
+
+        #nextButt{
+            height: 100px;
+            width: 300px;
+        }
+
+        #prevButt>span, #nextButt>span{
+            font-size: 2rem;
+        }
+
+        #text>div{
+            height: 100px;
+            width: 200px;
+            background: lightblue;
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #hideText, #showText{
+            height: 50px;
+            margin-top: 20px;
+            font-weight: bold;
+            background: palevioletred;
+        }
+
+        #showText{
+            background: lightgreen;
+        }
+        .form-container {
+            width: 1000px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+            margin-right: 10px;
+        }
+
+        .form-container input[type="number"],
+        .form-container input[type="text"] {
+            padding: 8px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            margin-right: 20px;
+        }
+
+        .form-container button {
+            padding: 8px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #45a049;
+        }
+
+        .table-container table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .table-container td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #priceBlock {
+            width: 250px;
+            height: 100px;
+            background-color: lightgray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+<form action="" id="first">
+    <input type="text" id="name" placeholder="Name">
+    <input type="text" id="surname" placeholder="Surname">
+    <input type="number" id="age" placeholder="Age">
+    <button type="button" onclick="submitForm()">Submit</button>
+</form>
+
+<br>
+
+<div id="output"></div>
+<div id="blockNumber"></div>
+
+<br>
+
+<div id="box"></div>
+<button id="prevButt"><span>Previous</span></button>
+<button id="nextButt"><span>Next</span></button>
+
+<br>
+<br>
+<div id="text"><div>Some Text</div></div>
+<button id="hideText"><span>Hide Text Block</span></button>
+<button id="showText"><span>Show Text Block</span></button>
+
+<br>
+<br>
+
+<label for="inputAge">Вкажіть ваш вік:</label>
+<input type="number" id="inputAge" name="inputAge" min="0" required>
+<button id="checkAge">Перевірити вік</button>
+<span id="resultMsg"></span>
+
+<br>
+<br>
+<br>
+
+<div class="form-container">
+    <label for="rowCountInput">Кількість рядків:</label>
+    <input type="number" id="rowCountInput" min="1" required><br>
+
+    <label for="columnCountInput">Кількість стовпців:</label>
+    <input type="number" id="columnCountInput" min="1" required><br>
+
+    <label for="cellContentInput">Вміст ячейок:</label>
+    <input type="text" id="cellContentInput" required><br>
+
+    <button id="generateTableButton">Створити таблицю</button>
+</div>
+
+<div class="table-container" id="tableContainer"></div>
+
+
+<div id="priceBlock">100 грн</div>
+
+
+<script src="main.js"></script>
+</body>
+</html>
