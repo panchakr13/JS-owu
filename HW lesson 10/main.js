@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let cellContent = document.getElementById('cellContentInput').value;
 
         let tableContainer = document.getElementById('tableContainer');
-        tableContainer.innerHTML = ''; // Очистка контейнера перед генерацією нової таблиці
+        tableContainer.innerHTML = '';
 
         let table = document.createElement('table');
 
