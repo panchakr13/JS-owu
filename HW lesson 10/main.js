@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let lastReloadTime = localStorage.getItem('lastReloadTime');
     let currentTime = Date.now();
 
-    if (!lastReloadTime || (currentTime - lastReloadTime >= 1000)) {
+    if (!lastReloadTime || (currentTime - lastReloadTime >= 10000)) {
         let priceBlock = document.getElementById('priceBlock');
         let currentPrice = parseInt(priceBlock.innerText);
         let newPrice = currentPrice + 10;
