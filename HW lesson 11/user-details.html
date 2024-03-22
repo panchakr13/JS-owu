@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        a{
+            text-decoration: none;
+            font-size: 3rem;
+            color: midnightblue;
+        }
+
+        li{
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h3><a href="index.html"><- BACK</a></h3>
+
+<script>
+    //   - зробити файл user-details.html
+    // з ендпоінту http://jsonplaceholder.typicode.com/users отримати всіх користувачів
+    //     вивести їх id + name списком та додати посилання з href = user-details.html?id=XXX (замість ХХХ - айді юзера)
+    // при кліку на посилання перехід на відповідну сторінку, на якій буде вся інформація про користувача (всі 15 полів)
+    // отримана через додатковий запит (https://jsonplaceholder.typicode.com/users/XXX   де ХХХ - айді користувача)
+
+
+    let userID = new URL(location.href).searchParams.get('XXX')
+
+    let baseURL = 'http://jsonplaceholder.typicode.com/users/'+userID;
+
+    fetch(baseURL)
+        .then(res => res.json())
+        .then(data => {
+            let div = document.createElement('div');
+            document.body.appendChild(div);
+
+            let ul = document.createElement('ul');
+            div.appendChild(ul);
+            for (const user in data) {
+                if (typeof data[user] != 'object'){
+                    let li = document.createElement('li');
+                    li.innerText = `${user} - ${data[user]}`
+                    ul.appendChild(li);
+                } else {
+                        for (const key in data[user]){
+                            if (typeof key != 'object' && typeof data[user][key] != 'object'){
+                                // let ul = document.createElement('ul')
+                                // div.appendChild(ul)
+                                let li = document.createElement('li');
+                                li.innerText = `${key} - ${data[user][key]}`;
+                                ul.appendChild(li)
+                            } else{
+                                    console.log(data[user][key])
+
+                                    for (const j in data[user][key]){
+
+                                        // let ul = document.createElement('ul')
+                                        // div.appendChild(ul)
+
+                                        let li = document.createElement('li')
+                                        li.innerText = `${j} - ${data[user][key][j]}`
+                                        ul.appendChild(li)
+                                    }
+                            }
+                        }
+                }
+            }
+
+        })
+</script>
+</body>
+</html>

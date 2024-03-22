@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>First</title>
+    <style>
+        .cart {
+            margin: 10px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .product {
+            width: 140px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            margin: 0 0 5px;
+            font-size: 16px;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+
+        img {
+            max-width: 100px;
+            max-height: 100px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+    // - взяти https://dummyjson.com/docs/carts та вивести інформацію про всі корзини. Відобразити всі поля кожної корзини.
+
+    fetch('https://dummyjson.com/carts?limit=4') //Add limit=4
+        .then(res => res.json())
+        .then(value => {
+            let items = value.carts;
+            for (const item of items) {
+                let products = item.products;
+                let cartDiv = document.createElement('div');
+                cartDiv.classList.add('cart')
+                for (const product in products){
+                    let oneProduct = products[product]
+                    let productDiv = document.createElement('div')
+                    productDiv.classList.add('product')
+                    productDiv.innerHTML = `
+                        <h3>Title: ${oneProduct.title}</h3>
+                        <p>ID: ${oneProduct.id}</p>
+                        <p>Price: ${oneProduct.price}</p>
+                        <p>Total: ${oneProduct.total}</p>
+                    `;
+                    let img = document.createElement('img');
+                    img.src = oneProduct.thumbnail;
+                    cartDiv.append(productDiv, img)
+                }
+
+                document.body.appendChild(cartDiv)
+
+            }
+        })
+
+
+</script>
+</body>
+</html>

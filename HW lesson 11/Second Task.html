@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Second</title>
+    <style>
+         body{
+             display: flex;
+             justify-content: space-between;
+             flex-wrap: wrap;
+             gap: 20px;
+         }
+        .recipeBlock{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 300px;
+            height: 700px;
+            border: 1px solid grey;
+        }
+        img{
+            height: 300px;
+            width: 300px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<script>
+    //     - взяти https://dummyjson.com/docs/recipes та вивести інформацію про всі рецепти. Інгредієнти повинні бути список під час відображення.
+    fetch('https://dummyjson.com/recipes?limit=10')
+        .then(res => res.json())
+        .then(data => {
+            let recipes = data.recipes;
+            for (const recipe of recipes) {
+
+                let div = document.createElement('div');
+                div.classList.add('recipeBlock');
+                document.body.appendChild(div)
+
+                let h3 = document.createElement('h3')
+                h3.innerText = recipe.name;
+
+
+                let span = document.createElement('span');
+                span.innerText = `ID - ${recipe.id}
+                Cook time - ${recipe.cookTimeMinutes} minutes
+                Difficulty - ${recipe.difficulty}
+                Calories - ${recipe.caloriesPerServing}
+                Rating - ${recipe.rating}
+                `
+
+
+                let ul = document.createElement('ul');
+                ul.innerText = "Ingredients: ";
+                for (const ingredient of recipe.ingredients){
+                    let li = document.createElement('li')
+                    li.innerText = ingredient;
+                    ul.appendChild(li)
+                }
+
+                let img = document.createElement('img');
+                img.src = recipe.image;
+
+
+                div.append(h3, span, ul, img)
+
+            }
+        });
+</script>
+</body>
+</html>
